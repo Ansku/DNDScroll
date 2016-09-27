@@ -1,0 +1,6 @@
+.project
+.settings/
+.classpath
+target/
+**/styles.scss.cache
+dndscroll-demo/src/main/webapp/VAADIN/widgetsets/
