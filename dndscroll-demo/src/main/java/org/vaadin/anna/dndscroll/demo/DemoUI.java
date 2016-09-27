@@ -125,7 +125,7 @@ public class DemoUI extends UI {
             content.addComponent(wrapper);
         }
         panel.setContent(content);
-        panel.setWidth(200, Unit.PIXELS);
+        panel.setHeight(200, Unit.PIXELS);
         PanelAutoScrollExtension extension = new PanelAutoScrollExtension();
         extension.extend(panel);
         return panel;
