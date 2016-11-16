@@ -42,14 +42,21 @@ public class CustomDragAndDropManager extends VDragAndDropManager implements
     @Override
     public VDragEvent startDrag(VTransferable transferable,
             NativeEvent startEvent, boolean handleDragEvents) {
+        VDragEvent sd = super.startDrag(transferable, startEvent, handleDragEvents);
         fireEvent(new DragStartOrEndEvent(transferable, startEvent));
-        return super.startDrag(transferable, startEvent, handleDragEvents);
+        return sd;
     }
 
     @Override
     public void endDrag() {
         fireEvent(new DragStartOrEndEvent());
         super.endDrag();
+    }
+
+    @Override
+    public void interruptDrag() {
+        fireEvent(new DragStartOrEndEvent());
+        super.interruptDrag();
     }
 
     public interface DragStartOrEndHandler extends EventHandler {
