@@ -5,7 +5,7 @@
 	<groupId>org.vaadin.anna</groupId>
 	<artifactId>dndscroll-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>DNDScroll Add-on Demo</name>
 
 	<prerequisites>
