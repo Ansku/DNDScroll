@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2016 Vaadin Ltd.
+ * Copyright 2000-2017 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,7 +17,7 @@
 package org.vaadin.anna.dndscroll;
 
 import com.vaadin.server.AbstractExtension;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 /**
  * Extension for enabling a Table to scroll automatically when a dragged item is

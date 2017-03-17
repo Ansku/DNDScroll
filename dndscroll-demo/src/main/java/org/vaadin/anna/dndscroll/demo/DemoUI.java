@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2016 Vaadin Ltd.
+ * Copyright 2000-2017 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,7 +25,6 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptAll;
@@ -35,7 +34,6 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.dd.HorizontalDropLocation;
 import com.vaadin.shared.ui.dd.VerticalDropLocation;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.AbstractSelect.AbstractSelectTargetDetails;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
@@ -45,15 +43,17 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.Table.TableDragMode;
-import com.vaadin.ui.Table.TableTransferable;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.AbstractSelect.AbstractSelectTargetDetails;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.Table.TableDragMode;
+import com.vaadin.v7.ui.Table.TableTransferable;
 
 @Theme("demo")
 @Title("DNDScroll Add-on Demo")
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "deprecation" })
 @Widgetset("org.vaadin.anna.dndscroll.demo.DNDScrollDemoWidgetset")
 public class DemoUI extends UI {
 

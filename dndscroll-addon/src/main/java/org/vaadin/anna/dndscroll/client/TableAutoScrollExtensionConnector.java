@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2016 Vaadin Ltd.
+ * Copyright 2000-2017 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,8 +17,8 @@
 package org.vaadin.anna.dndscroll.client;
 
 import com.google.gwt.dom.client.Element;
-import com.vaadin.client.ui.VScrollTable;
 import com.vaadin.shared.ui.Connect;
+import com.vaadin.v7.client.ui.VScrollTable;
 
 /**
  * Connector for TableAutoScrollExtension.
