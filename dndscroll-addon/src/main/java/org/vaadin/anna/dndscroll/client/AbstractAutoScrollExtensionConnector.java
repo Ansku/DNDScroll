@@ -41,9 +41,9 @@ import com.vaadin.client.ui.dd.VTransferable;
  *
  * @author Teppo Kurki, Anna Koskinen / Vaadin Ltd.
  */
-public abstract class AbstractAutoScrollExtensionConnector extends
-        AbstractExtensionConnector implements
-        CustomDragAndDropManager.DragStartOrEndHandler {
+public abstract class AbstractAutoScrollExtensionConnector
+        extends AbstractExtensionConnector
+        implements CustomDragAndDropManager.DragStartOrEndHandler {
 
     private static final int SCROLL_TOP_SPEED_PX_SEC = 800;
     private static final int MIN_NO_AUTOSCROLL_AREA_PX = 50;
@@ -80,14 +80,15 @@ public abstract class AbstractAutoScrollExtensionConnector extends
         MouseUpHandler mouseUpHandler = new MouseUpHandler() {
             @Override
             public void onMouseUp(MouseUpEvent event) {
-                    stopAndCleanup();
+                stopAndCleanup();
             }
         };
         widget.addDomHandler(mouseUpHandler, MouseUpEvent.getType());
     }
 
     @Override
-    public void onDragStarted(VTransferable transferable, NativeEvent startEvent) {
+    public void onDragStarted(VTransferable transferable,
+            NativeEvent startEvent) {
         stopAndCleanup();
 
         handlerRegistration = Event
@@ -170,7 +171,8 @@ public abstract class AbstractAutoScrollExtensionConnector extends
 
         private static final int GRADIENT_MIN_THRESHOLD_PX = 10;
         private static final int SCROLL_AREA_REBOUND_PX_PER_SEC = 1;
-        private static final double SCROLL_AREA_REBOUND_PX_PER_MS = SCROLL_AREA_REBOUND_PX_PER_SEC / 1000.0d;
+        private static final double SCROLL_AREA_REBOUND_PX_PER_MS = SCROLL_AREA_REBOUND_PX_PER_SEC
+                / 1000.0d;
 
         private int startBound = -1;
         private int endBound = -1;
@@ -206,20 +208,22 @@ public abstract class AbstractAutoScrollExtensionConnector extends
             final int intPixelsToScroll = (int) pixelsToScroll;
             pixelsToScroll -= intPixelsToScroll;
             if (intPixelsToScroll != 0) {
-                double scrollPos = scrollAxis == ScrollAxis.VERTICAL ? scrollable
-                        .getScrollTop() : scrollable.getScrollLeft();
-                double maxScrollPos = scrollAxis == ScrollAxis.VERTICAL ? scrollable
-                        .getScrollHeight() - scrollable.getOffsetHeight()
+                double scrollPos = scrollAxis == ScrollAxis.VERTICAL
+                        ? scrollable.getScrollTop()
+                        : scrollable.getScrollLeft();
+                double maxScrollPos = scrollAxis == ScrollAxis.VERTICAL
+                        ? scrollable.getScrollHeight()
+                                - scrollable.getOffsetHeight()
                         : scrollable.getScrollWidth()
                                 - scrollable.getOffsetWidth();
                 if (intPixelsToScroll > 0 && scrollPos < maxScrollPos
                         || intPixelsToScroll < 0 && scrollPos > 0) {
                     if (ScrollAxis.VERTICAL == scrollAxis) {
-                        scrollable
-                                .setScrollTop((int) (scrollPos + intPixelsToScroll));
+                        scrollable.setScrollTop(
+                                (int) (scrollPos + intPixelsToScroll));
                     } else {
-                        scrollable
-                                .setScrollLeft((int) (scrollPos + intPixelsToScroll));
+                        scrollable.setScrollLeft(
+                                (int) (scrollPos + intPixelsToScroll));
                     }
                 }
             }
@@ -231,8 +235,8 @@ public abstract class AbstractAutoScrollExtensionConnector extends
                 return;
             }
 
-            int reboundPx = (int) Math.ceil(SCROLL_AREA_REBOUND_PX_PER_MS
-                    * timeDiff);
+            int reboundPx = (int) Math
+                    .ceil(SCROLL_AREA_REBOUND_PX_PER_MS * timeDiff);
             if (startBound < finalStartBound) {
                 startBound += reboundPx;
                 startBound = Math.min(startBound, finalStartBound);
@@ -315,7 +319,8 @@ public abstract class AbstractAutoScrollExtensionConnector extends
                 final boolean startDidNotMove = oldTopBound == startBound;
                 final boolean endDidNotMove = oldBottomBound == endBound;
                 final boolean wasMovement = pageCordinate != scrollingAxisPageCoordinate;
-                scrollAreaShouldRebound = (startDidNotMove && endDidNotMove && wasMovement);
+                scrollAreaShouldRebound = (startDidNotMove && endDidNotMove
+                        && wasMovement);
             }
         }
     }
