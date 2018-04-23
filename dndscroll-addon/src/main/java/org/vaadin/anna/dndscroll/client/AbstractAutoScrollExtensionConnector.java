@@ -21,6 +21,8 @@ import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
 import com.google.gwt.animation.client.AnimationScheduler.AnimationHandle;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.dom.client.MouseUpEvent;
+import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Event.NativePreviewEvent;
@@ -60,19 +62,28 @@ public abstract class AbstractAutoScrollExtensionConnector extends
     private int startingBound;
     private int endingBound;
     private int gradientArea;
+    protected ComponentConnector connector;
     protected Widget widget;
 
     public abstract Element getScrollTarget();
 
     @Override
     protected void extend(ServerConnector target) {
-        widget = ((ComponentConnector) target).getWidget();
+        connector = (ComponentConnector) target;
+        widget = connector.getWidget();
         element = widget.getElement();
 
         CustomDragAndDropManager manager = (CustomDragAndDropManager) VDragAndDropManager
                 .get();
         dragEventsHandler = manager.addHandler(
                 CustomDragAndDropManager.DragStartOrEndEvent.TYPE, this);
+        MouseUpHandler mouseUpHandler = new MouseUpHandler() {
+            @Override
+            public void onMouseUp(MouseUpEvent event) {
+                    stopAndCleanup();
+            }
+        };
+        widget.addDomHandler(mouseUpHandler, MouseUpEvent.getType());
     }
 
     @Override
