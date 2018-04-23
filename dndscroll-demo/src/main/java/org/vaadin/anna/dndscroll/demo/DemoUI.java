@@ -142,6 +142,10 @@ public class DemoUI extends UI {
         public void drop(DragAndDropEvent event) {
             WrapperTargetDetails details = (WrapperTargetDetails) event
                     .getTargetDetails();
+            if (!(event.getTransferable() instanceof WrapperTransferable)) {
+                Notification.show("illegal drop");
+                return;
+            }
             WrapperTransferable transferable = (WrapperTransferable) event
                     .getTransferable();
 
