@@ -91,28 +91,33 @@ public abstract class AbstractAutoScrollExtensionConnector
             NativeEvent startEvent) {
         stopAndCleanup();
 
-        handlerRegistration = Event
-                .addNativePreviewHandler(new NativePreviewHandler() {
+        if (connector.equals(transferable.getDragSource())
+                || widget.getElement().isOrHasChild(transferable.getDragSource()
+                        .getWidget().getElement())) {
+            handlerRegistration = Event
+                    .addNativePreviewHandler(new NativePreviewHandler() {
 
-                    @Override
-                    public void onPreviewNativeEvent(NativePreviewEvent event) {
-                        NativeEvent nativeEvent = event.getNativeEvent();
-                        if (Event.ONMOUSEMOVE == event.getTypeInt()
-                                && NativeEvent.BUTTON_LEFT == nativeEvent
-                                        .getButton()) {
-                            if (scrollable == null) {
-                                scrollable = getScrollTarget();
-                            }
-                            if (horizontalAutoScroller == null
-                                    && verticalAutoScroller == null) {
-                                startAutoScroller(nativeEvent);
-                            } else {
-                                updateAutoScroller(nativeEvent);
+                        @Override
+                        public void onPreviewNativeEvent(
+                                NativePreviewEvent event) {
+                            NativeEvent nativeEvent = event.getNativeEvent();
+                            if (Event.ONMOUSEMOVE == event.getTypeInt()
+                                    && NativeEvent.BUTTON_LEFT == nativeEvent
+                                            .getButton()) {
+                                if (scrollable == null) {
+                                    scrollable = getScrollTarget();
+                                }
+                                if (horizontalAutoScroller == null
+                                        && verticalAutoScroller == null) {
+                                    startAutoScroller(nativeEvent);
+                                } else {
+                                    updateAutoScroller(nativeEvent);
+                                }
                             }
                         }
-                    }
 
-                });
+                    });
+        }
     }
 
     private void startAutoScroller(NativeEvent nativeEvent) {
